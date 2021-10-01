@@ -1,16 +1,16 @@
 $(function () {
    
-    var getJSONObject = $.getJSON("team.json", function (data) {
+    let getJSONObject = $.getJSON("team.json", function (data) {
         console.log("data from my getJSON method", data);
         
+        let temp= '';
         $.each(data.teammembers, function (key, val) {
-            console.log("did we get the data?", key, val)
-            $(`#team`).html(
-                `<h3>${val.name}</h3>
-                 <h4>${val.title}</h4>
-                 <p>${val.bio}</p>`
-            )
+           temp += '<h3>' + val.name + '</h3>';
+           temp += '<h4>' + val.title + '</h4>';
+           temp += '<p>' + val.bio + '</p>';
+            
         });
+        $(`#team`).html(temp);
     }).always(function (data, status, error) {
         console.log("data", data, "status", status, "error", error);
     });
